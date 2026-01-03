@@ -1,0 +1,60 @@
+{
+  "user": {
+    "weight": 75,
+    "height": 180,
+    "age": 25,
+    "gender": "male"
+  },
+  "session": {
+    "date": "2025-01-02",
+    "total_duration_minutes": 60
+  },
+  "actions": [
+    {
+      "id": "action_1",
+      "type": "strength",
+      "body_part": "chest",
+      "exercise": "Bench Press",
+      "sets": 4,
+      "reps": 8,
+      "weight": 80,
+      "duration": 20,
+      "timestamp": 1704192000,
+      "rpe": "medium"
+    },
+    {
+      "id": "action_2",
+      "type": "strength",
+      "body_part": "back",
+      "exercise": "Barbell Row",
+      "sets": 4,
+      "reps": 8,
+      "weight": 85,
+      "duration": 18,
+      "timestamp": 1704192600,
+      "rpe": "hard"
+    },
+    {
+      "id": "action_3",
+      "type": "strength",
+      "body_part": "shoulders",
+      "exercise": "Overhead Press",
+      "sets": 3,
+      "reps": 10,
+      "weight": 50,
+      "duration": 12,
+      "timestamp": 1704193200,
+      "rpe": "medium"
+    },
+    {
+      "id": "action_4",
+      "type": "cardio",
+      "exercise": "Treadmill",
+      "cardio_type": "medium",
+      "duration": 10,
+      "timestamp": 1704194000,
+      "rpe": "easy"
+    }
+  ],
+  "edits": []
+}

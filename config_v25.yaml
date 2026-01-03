@@ -1,0 +1,217 @@
+# Iron Tracker Configuration (v2.5)
+# 所有"魔法数字"均在此定义，便于调整
+
+# ==========================================
+# v2.5 核心参数
+# ==========================================
+
+# 算法版本
+version: "v2.5"
+
+# 1. MET 表 (Metabolic Equivalent of Task)
+# 分为做组 MET 和休息 MET
+met_table:
+  # 做组 MET (MET_work) - 实际举重时的代谢当量
+  work:
+    chest: 6.0        # 胸部 - 大肌群
+    back: 6.0         # 背部 - 大肌群
+    legs: 6.5         # 腿部 - 最大肌群
+    shoulders: 5.5    # 肩部 - 中等肌群
+    arms: 5.0         # 手臂 - 小肌群
+    core: 4.5         # 核心 - 稳定肌群
+    general: 5.0      # 通用默认值
+  
+  # 休息 MET (MET_rest) - 组间休息时的代谢当量
+  rest: 2.0           # 组间休息（站立、走动、换片）
+
+# 2. 有氧 MET 表
+cardio_met_table:
+  # 跑步
+  running_slow: 8.0       # 慢跑 6-7 km/h
+  running_moderate: 9.5   # 中速跑 8-9 km/h
+  running_fast: 11.0      # 快跑 10+ km/h
+  running_sprint: 14.0    # 冲刺跑
+  
+  # 骑行
+  cycling_light: 5.5      # 轻松骑行
+  cycling_moderate: 7.5   # 中等强度
+  cycling_vigorous: 10.0  # 高强度
+  cycling_spinning: 8.5   # 动感单车
+  
+  # 椭圆机/登山机
+  elliptical: 7.0
+  stair_climber: 9.0
+  
+  # 划船
+  rowing_light: 5.5
+  rowing_moderate: 7.0
+  rowing_vigorous: 10.0
+  
+  # 跳绳
+  jump_rope: 11.0
+  
+  # 游泳
+  swimming_light: 6.0
+  swimming_moderate: 8.0
+  swimming_vigorous: 10.0
+  
+  # 通用分类
+  low: 5.0              # 低强度有氧
+  medium: 7.5           # 中等强度有氧
+  high: 10.0            # 高强度有氧
+
+# 3. 时间参数
+time_params:
+  seconds_per_rep: 3.0              # 每次动作耗时（秒）
+  default_rest_per_set: 90          # 默认组间休息（秒）
+  min_rest_per_set: 30              # 最小组间休息（秒）
+  max_rest_per_set: 300             # 最大组间休息（秒）
+  gap_threshold_seconds: 900        # 后编辑检测阈值（15分钟）
+
+# 4. 强度因子 (IF) 阈值表
+# volume_per_weight = (total_weight * total_reps) / body_weight
+intensity_factor_thresholds:
+  - volume: 20
+    factor: 0.90
+  - volume: 30
+    factor: 1.00
+  - volume: 40
+    factor: 1.10
+  - volume: 50
+    factor: 1.20
+  - volume: 60
+    factor: 1.30
+  - volume: 80
+    factor: 1.40
+  - volume: 100
+    factor: 1.50
+
+# 5. 防错与兜底参数
+safety:
+  max_calorie_multiplier: 8         # 热量上限 = 体重 * 此值
+  time_mismatch_threshold: 0.20     # 时间不一致警告阈值 (20%)
+  min_calories_per_session: 50      # 最小热量（防止异常低值）
+  max_calories_per_minute: 20       # 每分钟最大热量（防止异常高值）
+
+# 6. EPOC (运动后过量氧耗) 参数
+epoc:
+  enabled: true
+  threshold_if: 1.1                 # IF > 此值时启用 EPOC
+  percentage: 5                     # EPOC 奖励百分比
+
+# 7. BMR 计算参数
+bmr:
+  formula: "mifflin_st_jeor"        # 使用 Mifflin-St Jeor 公式
+  reference:
+    weight: 75                      # 参考体重 (kg)
+    height: 180                     # 参考身高 (cm)
+    age: 25                         # 参考年龄
+    gender: "male"                  # 参考性别
+
+# 8. 默认用户配置
+default_user:
+  weight: 75          # kg
+  height: 180         # cm
+  age: 25             # years
+  gender: "male"
+
+# ==========================================
+# 自动识别规则
+# ==========================================
+
+# 有氧动作自动识别关键词
+cardio_keywords:
+  - "跑步"
+  - "跑"
+  - "running"
+  - "run"
+  - "treadmill"
+  - "跑步机"
+  - "骑行"
+  - "cycling"
+  - "bike"
+  - "单车"
+  - "椭圆"
+  - "elliptical"
+  - "划船"
+  - "rowing"
+  - "跳绳"
+  - "jump rope"
+  - "游泳"
+  - "swimming"
+  - "有氧"
+  - "cardio"
+  - "hiit"
+  - "登山机"
+  - "stair"
+
+# 身体部位映射
+body_part_mapping:
+  # 胸部
+  chest:
+    - "胸"
+    - "chest"
+    - "bench"
+    - "卧推"
+    - "飞鸟"
+    - "夹胸"
+    - "pec"
+  
+  # 背部
+  back:
+    - "背"
+    - "back"
+    - "划船"
+    - "引体"
+    - "下拉"
+    - "row"
+    - "pulldown"
+    - "pullup"
+    - "lat"
+  
+  # 腿部
+  legs:
+    - "腿"
+    - "leg"
+    - "深蹲"
+    - "squat"
+    - "硬拉"
+    - "deadlift"
+    - "腿举"
+    - "腿弯"
+    - "腿屈伸"
+    - "臀"
+    - "glute"
+  
+  # 肩部
+  shoulders:
+    - "肩"
+    - "shoulder"
+    - "推举"
+    - "press"
+    - "侧平举"
+    - "前平举"
+    - "三角"
+    - "delt"
+  
+  # 手臂
+  arms:
+    - "臂"
+    - "arm"
+    - "二头"
+    - "三头"
+    - "bicep"
+    - "tricep"
+    - "弯举"
+    - "curl"
+    - "臂屈伸"
+  
+  # 核心
+  core:
+    - "核心"
+    - "core"
+    - "腹"
+    - "abs"
+    - "卷腹"
+    - "平板"
+    - "plank"

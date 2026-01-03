@@ -1,0 +1,23 @@
+{
+  "user": {
+    "weight": 75,
+    "height": 180,
+    "age": 25,
+    "gender": "male"
+  },
+  "session": {
+    "date": "2025-01-02",
+    "total_duration_minutes": 60
+  },
+  "actions_count": 4,
+  "calories": {
+    "gross_calories": 487.5,
+    "net_calories": 487.5,
+    "work_calories": 387.2,
+    "rest_calories": 45.0,
+    "cardio_calories": 55.3,
+    "idle_calories": 45.0,
+    "bmr_factor": 1.0,
+    "epoc_bonus": 19.4
+  }
+}

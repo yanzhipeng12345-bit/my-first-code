@@ -1,0 +1,51 @@
+# Iron Tracker Configuration (v4.5.1)
+# All "magic numbers" are defined here for easy adjustment
+
+# MET (Metabolic Equivalent) values by body part
+# Used for strength training calorie estimation
+met_table:
+  chest: 5.1          # +10% from 4.6
+  back: 5.1           # +10% from 4.6
+  legs: 5.5           # Large muscle group
+  shoulders: 5.1      # +10% from 4.6
+  arms: 4.2           # +10% from 3.8
+  core: 3.8
+  general: 4.0
+
+# Cardio MET mapping by intensity
+cardio_met_map:
+  low: 5.0            # Walking pace
+  medium: 7.5         # Moderate intensity
+  high: 10.0          # High intensity
+
+# Idle/Rest MET value (elevated from 1.3 to account for gym environment)
+idle_met: 1.8
+
+# Gap threshold for post-edit detection (in seconds)
+# If gap between actions > this, it's considered a post-edit scenario
+gap_threshold_seconds: 900  # 15 minutes
+
+# Intensity factor thresholds (linear interpolation)
+# volume_per_weight = (total_weight * total_reps) / body_weight
+intensity_factor_thresholds:
+  - volume: 30
+    factor: 1.0
+  - volume: 40
+    factor: 1.15
+  - volume: 50
+    factor: 1.25
+  - volume: 60
+    factor: 1.35
+  - volume: 100
+    factor: 1.5
+
+# EPOC (Excess Post-Exercise Oxygen Consumption) bonus
+# Applied to high-intensity sessions (intensity_factor > 1.1)
+epoc_percentage: 5  # 5% of work calories
+
+# Default user profile (fallback values)
+default_user:
+  weight: 75          # kg
+  height: 180         # cm
+  age: 25             # years
+  gender: male

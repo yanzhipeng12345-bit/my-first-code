@@ -1,0 +1,56 @@
+{
+  "user": {
+    "weight": 80,
+    "height": 175,
+    "age": 30,
+    "gender": "male"
+  },
+  "session": {
+    "date": "2025-01-02",
+    "total_duration_minutes": 120,
+    "note": "Post-edit scenario: user trained in morning, added cardio in evening"
+  },
+  "actions": [
+    {
+      "id": "action_1",
+      "type": "strength",
+      "body_part": "legs",
+      "exercise": "Squat",
+      "sets": 5,
+      "reps": 5,
+      "weight": 120,
+      "duration": 25,
+      "timestamp": 1704192000,
+      "rpe": "hard"
+    },
+    {
+      "id": "action_2",
+      "type": "strength",
+      "body_part": "legs",
+      "exercise": "Leg Press",
+      "sets": 4,
+      "reps": 10,
+      "weight": 200,
+      "duration": 15,
+      "timestamp": 1704192900,
+      "rpe": "medium"
+    },
+    {
+      "id": "action_3_postedit",
+      "type": "cardio",
+      "exercise": "Running",
+      "cardio_type": "high",
+      "duration": 20,
+      "timestamp": 1704196800,
+      "rpe": "hard",
+      "note": "Added 4 hours later (post-edit)"
+    }
+  ],
+  "edits": [
+    {
+      "action_id": "action_3_postedit",
+      "edited_at": 1704196800,
+      "reason": "post_edit"
+    }
+  ]
+}
